@@ -33,6 +33,7 @@ DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/activemq/activemq.xml:/opt/activemq/conf/ac
 DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/activemq/users.properties:/opt/activemq/conf/users.properties )
 DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/activemq/credentials.properties:/opt/activemq/conf/credentials.properties )
 DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/activemq/jetty-realm.properties:/opt/activemq/conf/jetty-realm.properties )
+DOCKER_RUN_ARGS+=( -v $GUEST_MNT/etc/activemq/jetty.xml:/opt/activemq/conf/jetty.xml )
 DOCKER_RUN_ARGS+=( -v $GUEST_MNT/var/lib/activemq/data:/opt/activemq/data )
 
 docker update --restart=no $NAME || true

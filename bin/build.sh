@@ -4,12 +4,10 @@ pushd "$(dirname $0)"
 SWD=$(pwd)
 BWD=$(dirname "$SWD")
 popd
-HOST_MNT=${HOST_MNT:-$BWD/mnt}
-GUEST_MNT=${GUEST_MNT:-$BWD/mnt}
 
 . $SWD/setenv.sh
 
-docker build ${DOCKER_BUILD_ARGS[*]} --rm -t "$REPO/$NAME:$VERSION" $BWD/docker
+docker build ${DOCKER_BUILD_ARGS[*]} --rm -t "$DOCKER_REPO/$NAME:$VERSION" -t "$DOCKER_REPO/$NAME:latest" $BWD/docker
 
-dockerImages=$(docker images "$REPO/$NAME" -f "before=$REPO/$NAME:$VERSION" -q)
+dockerImages=$(docker images "$NAME" -f "before=$DOCKER_REPO/$NAME:$VERSION" -q)
 [ -n "$dockerImages" ] && docker rmi -f $dockerImages || true
