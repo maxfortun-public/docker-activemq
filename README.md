@@ -25,7 +25,7 @@ DOCKER_RUN_ARGS+=( -v $HOST_ROOT/etc/activemq/jetty-realm.properties:/opt/active
 DOCKER_RUN_ARGS+=( -v $HOST_ROOT/etc/activemq/jetty.xml:/opt/activemq/conf/jetty.xml )
 DOCKER_RUN_ARGS+=( -v $HOST_ROOT/var/lib/activemq/data:/opt/activemq/data )
 
-docker run -d -it "${DOCKER_RUN_ARGS[@]}" --name $NAME $imageName:$ACTIVEMQ_VERSION "$@"
+docker run -it "${DOCKER_RUN_ARGS[@]}" --name $NAME $imageName:$ACTIVEMQ_VERSION "$@"
 
 ```
 
