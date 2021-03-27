@@ -1,0 +1,5 @@
+#!/bin/bash -ex
+
+docker build --build-arg ACTIVEMQ_VERSION=$ACTIVEMQ_VERSION -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+
+
