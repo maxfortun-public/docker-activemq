@@ -12,7 +12,7 @@ GUEST_MNT=${GUEST_MNT:-$BWD/mnt}
 
 . $SWD/setenv.sh
 
-RUN_IMAGE="$REPO/$NAME"
+RUN_IMAGE="$DOCKER_REPO/$NAME"
 
 DOCKER_RUN_ARGS=( -e container=docker )
 DOCKER_RUN_ARGS+=( -v /etc/resolv.conf:/etc/resolv.conf:ro )
@@ -39,7 +39,7 @@ DOCKER_RUN_ARGS+=( -v $GUEST_MNT/var/lib/activemq/data:/opt/activemq/data )
 docker update --restart=no $NAME || true
 docker stop $NAME || true
 docker system prune -f
-docker run -d -it --restart=always "${DOCKER_RUN_ARGS[@]}" --name $NAME $RUN_IMAGE:$VERSION "$@"
+docker run -d -it --rm --restart=always "${DOCKER_RUN_ARGS[@]}" --name $NAME $RUN_IMAGE:$VERSION "$@"
 
 echo "To attach to container run 'docker attach $NAME'. To detach CTRL-P CTRL-Q."
 [ "$DOCKER_ATTACH" != "true" ] || docker attach $NAME
